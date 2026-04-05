@@ -1,0 +1,12 @@
+{
+  "name": "kustody-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing site for kustody.co",
+  "scripts": {
+    "dev": "npx serve public",
+    "deploy:vercel": "npx vercel --prod",
+    "deploy:netlify": "npx netlify deploy --prod --dir=public"
+  },
+  "license": "UNLICENSED"
+}
