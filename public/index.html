@@ -4,491 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kustody.co — Airport Lost & Found, Delivered.</title>
+<meta name="description" content="kustody connects airport lost & found centers with travelers worldwide. From item registration to international delivery — we handle everything.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #0058A3;
-    --navy-mid: #004f93;
-    --navy-light: #1a6fb5;
-    --amber: #FFDA1A;
-    --amber-dim: #e6c200;
-    --amber-pale: #fffbe6;
-    --white: #ffffff;
-    --gray: #a8c4df;
-    --gray-light: #d0e4f5;
-    --border: rgba(255,255,255,0.15);
-    --border-amber: rgba(255,218,26,0.45);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Pretendard', -apple-system, sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 3rem;
-    background: rgba(0,88,163,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    color: var(--amber);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--gray-light);
-  }
-
-  .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 0.55rem 1.4rem;
-    border: 1px solid var(--amber);
-    border-radius: 2rem;
-    color: var(--amber);
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .nav-cta:hover { background: var(--amber); color: var(--navy); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 3rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,218,26,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,218,26,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-  }
-
-  .hero-bg-glow {
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(255,218,26,0.1) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--amber);
-    text-transform: uppercase;
-    margin-bottom: 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--amber);
-  }
-
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1.05;
-    font-weight: 400;
-    max-width: 900px;
-    margin-bottom: 2rem;
-    position: relative;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--amber);
-  }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--gray-light);
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    font-family: 'Pretendard', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 0.9rem 2rem;
-    background: var(--amber);
-    color: var(--navy);
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .btn-primary:hover { background: #ffe84d; transform: translateY(-1px); }
-
-  .btn-ghost {
-    font-size: 0.9rem;
-    color: var(--gray-light);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: color 0.2s;
-  }
-  .btn-ghost:hover { color: var(--white); }
-
-  .hero-stats {
-    position: absolute;
-    right: 3rem;
-    bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: flex-end;
-  }
-
-  .stat-item { text-align: right; }
-
-  .stat-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.4rem;
-    color: var(--amber);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--gray);
-    letter-spacing: 0.05em;
-    margin-top: 0.2rem;
-  }
-
-  .stat-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--border);
-    align-self: flex-end;
-  }
-
-  /* ── TICKER BOARD ── */
-  .board-section {
-    padding: 2rem 3rem;
-    background: var(--navy-mid);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .board-header {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--gray);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .board-ticker {
-    display: flex;
-    gap: 2rem;
-    animation: ticker 30s linear infinite;
-    white-space: nowrap;
-    width: max-content;
-  }
-
-  .board-ticker:hover { animation-play-state: paused; }
-
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  .ticker-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--gray-light);
-    padding: 0.4rem 1.5rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .ticker-item .status { color: var(--amber); font-size: 0.65rem; }
-  .ticker-item .status.found { color: #5de0a0; }
-
-  /* ── SECTIONS ── */
-  section { padding: 7rem 3rem; }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    color: var(--amber);
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-  }
-
-  h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 400;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    color: var(--gray-light);
-    font-size: 1rem;
-    max-width: 480px;
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  /* Flow cards */
-  .flow-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 4rem;
-  }
-
-  .flow-column-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    color: var(--gray);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .flow-steps { display: flex; flex-direction: column; gap: 1rem; }
-
-  .flow-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.2rem;
-    padding: 1.4rem;
-    background: var(--navy-light);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    transition: border-color 0.2s;
-  }
-
-  .flow-step:hover { border-color: var(--border-amber); }
-
-  .step-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--amber);
-    background: rgba(255,218,26,0.12);
-    border: 1px solid var(--border-amber);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .step-content h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; color: var(--white); }
-  .step-content p { font-size: 0.82rem; color: var(--gray); line-height: 1.5; }
-
-  /* Features */
-  .features-section {
-    background: var(--navy-mid);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    margin-top: 4rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .feature-card {
-    padding: 2.2rem;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-
-  .feature-card:hover { background: var(--navy-light); }
-  .feature-card:nth-child(3n) { border-right: none; }
-  .feature-card:nth-child(n+4) { border-bottom: none; }
-
-  .feature-icon { width: 40px; height: 40px; margin-bottom: 1.2rem; color: var(--amber); }
-  .feature-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; }
-  .feature-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
-
-  /* Partner */
-  .partner-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 0;
-  }
-
-  .partner-half { padding: 6rem 3rem; position: relative; }
-  .partner-half.left { background: var(--navy-light); border-right: 1px solid var(--border); }
-  .partner-half.right { background: var(--navy-mid); }
-
-  .partner-tag {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    padding: 0.35rem 0.8rem;
-    border: 1px solid var(--border-amber);
-    color: var(--amber);
-    border-radius: 2px;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .partner-half h2 { font-size: 1.8rem; margin-bottom: 1rem; }
-  .partner-half p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.7; max-width: 380px; margin-bottom: 2rem; font-weight: 300; }
-
-  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-  .benefit-list li { font-size: 0.85rem; color: var(--gray-light); display: flex; align-items: flex-start; gap: 0.7rem; }
-  .benefit-list li::before { content: '→'; color: var(--amber); flex-shrink: 0; margin-top: 0.05em; }
-
-  /* CTA */
-  .cta-section { text-align: center; padding: 8rem 3rem; position: relative; overflow: hidden; }
-
-  .cta-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(255,218,26,0.1) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .cta-section h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1.2rem; position: relative; }
-  .cta-section p { font-size: 1rem; color: var(--gray-light); margin-bottom: 2.5rem; font-weight: 300; position: relative; }
-
-  .email-form { display: flex; gap: 0.8rem; justify-content: center; align-items: center; flex-wrap: wrap; position: relative; }
-
-  .email-input {
-    font-family: 'Pretendard', sans-serif;
-    font-size: 0.9rem;
-    padding: 0.85rem 1.4rem;
-    background: var(--navy-light);
-    border: 1px solid var(--border);
-    border-radius: 2rem;
-    color: var(--white);
-    width: 280px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .email-input::placeholder { color: var(--gray); }
-  .email-input:focus { border-color: var(--border-amber); }
-
-  /* Footer */
-  footer {
-    padding: 2.5rem 3rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-logo { font-family: 'DM Mono', monospace; font-size: 1rem; color: var(--amber); letter-spacing: 0.1em; }
-  .footer-note { font-size: 0.78rem; color: var(--gray); }
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { font-size: 0.8rem; color: var(--gray); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--white); }
-
-  /* Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-up { animation: fadeUp 0.7s ease both; }
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.22s; }
-  .delay-3 { animation-delay: 0.35s; }
-  .delay-4 { animation-delay: 0.48s; }
-
-  @media (max-width: 800px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 6rem 1.5rem 4rem; }
-    .hero-stats { display: none; }
-    section { padding: 5rem 1.5rem; }
-    .flow-grid { grid-template-columns: 1fr; }
-    .features-grid { grid-template-columns: 1fr; }
-    .feature-card { border-right: none !important; }
-    .feature-card:last-child { border-bottom: none; }
-    .partner-section { grid-template-columns: 1fr; }
-    .partner-half.left { border-right: none; border-bottom: 1px solid var(--border); }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-    .board-section { padding: 1.5rem; }
-  }
-</style>
+<link rel="stylesheet" href="assets/css/main.css">
+<script src="assets/js/lang.js"></script>
 </head>
 <body>
 
@@ -500,6 +20,13 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#partners">Partners</a></li>
   </ul>
+  <div class="lang-switcher">
+    <button onclick="switchLang('en')" class="active">EN</button>
+    <span class="lang-divider"></span>
+    <button onclick="switchLang('ko')" class="">한국어</button>
+    <span class="lang-divider"></span>
+    <button onclick="switchLang('ja')" class="">日本語</button>
+  </div>
   <a href="#waitlist" class="nav-cta">Get early access</a>
 </nav>
 
@@ -509,51 +36,15 @@
   <div class="hero-bg-glow"></div>
 
   <p class="hero-eyebrow fade-up">Airport lost & found platform</p>
-  <h1 class="fade-up delay-1">Left something at the airport?<br><em>We'll send it back to you.</em></h1>
-  <p class="hero-sub fade-up delay-2">
-    kustody connects airport lost & found centers with travelers worldwide.
-    From item registration to international delivery — we handle everything.
-  </p>
+  <h1 class="fade-up delay-1">Left something at ICN or GMP?<br><em>We'll send it back to you.</em></h1>
+  <p class="hero-sub fade-up delay-2">kustody is a recovery and delivery service for lost items at Incheon (ICN) and Gimpo (GMP) airports. Report your item online and we'll handle the rest.</p>
   <div class="hero-actions fade-up delay-3">
     <a href="#waitlist" class="btn-primary">Get early access →</a>
     <a href="#how" class="btn-ghost">See how it works ↓</a>
   </div>
 
-  <div class="hero-stats fade-up delay-4">
-    <div class="stat-item">
-      <div class="stat-num">94%</div>
-      <div class="stat-label">of lost items go unclaimed at airports</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num">3 days</div>
-      <div class="stat-label">average domestic delivery time</div>
-    </div>
-  </div>
-</section>
 
-<!-- TICKER BOARD -->
-<div class="board-section">
-  <div class="board-header">// live recovery feed</div>
-  <div class="board-ticker">
-    <span class="ticker-item"><span>ICN → JFK</span><span>Apple Watch S9</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>LHR → CDG</span><span>Galaxy Buds</span><span class="status">In transit</span></span>
-    <span class="ticker-item"><span>ICN → NRT</span><span>Passport wallet</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>LAX → ORD</span><span>Carry-on bag</span><span class="status">In transit</span></span>
-    <span class="ticker-item"><span>ICN → LAX</span><span>Camera</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>SIN → SYD</span><span>Laptop bag</span><span class="status">Verifying</span></span>
-    <span class="ticker-item"><span>CDG → FCO</span><span>Sunglasses</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>ICN → SIN</span><span>Charging pouch</span><span class="status">In transit</span></span>
-    <span class="ticker-item"><span>ICN → JFK</span><span>Apple Watch S9</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>LHR → CDG</span><span>Galaxy Buds</span><span class="status">In transit</span></span>
-    <span class="ticker-item"><span>ICN → NRT</span><span>Passport wallet</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>LAX → ORD</span><span>Carry-on bag</span><span class="status">In transit</span></span>
-    <span class="ticker-item"><span>ICN → LAX</span><span>Camera</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>SIN → SYD</span><span>Laptop bag</span><span class="status">Verifying</span></span>
-    <span class="ticker-item"><span>CDG → FCO</span><span>Sunglasses</span><span class="status found">✓ Delivered</span></span>
-    <span class="ticker-item"><span>ICN → SIN</span><span>Charging pouch</span><span class="status">In transit</span></span>
-  </div>
-</div>
+</section>
 
 <!-- HOW IT WORKS -->
 <section id="how">
@@ -561,58 +52,26 @@
   <h2>A 3-step process connecting<br>travelers and airports</h2>
   <p class="section-sub">No phone calls, no flying back. Recover your lost item entirely from your phone.</p>
 
-  <div class="flow-grid">
-    <div>
-      <div class="flow-column-label">Traveler (item owner)</div>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h4>Report your lost item</h4>
-            <p>Submit your airport, flight, and item details in the app. Our AI instantly scans for potential matches.</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h4>Receive a match alert</h4>
-            <p>When your item is found, you get notified with photos directly from the airport lost & found center.</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h4>Enter your address & receive</h4>
-            <p>Pay for shipping, confirm your address, and we'll deliver it to your door — anywhere in the world.</p>
-          </div>
-        </div>
+  <div class="flow-steps" style="margin-top:3rem; max-width:600px;">
+    <div class="flow-step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Report your lost item</h4>
+        <p>Submit your airport, flight number, and item details via our online form — anytime, 24/7. No phone calls needed.</p>
       </div>
     </div>
-
-    <div>
-      <div class="flow-column-label">Airport lost & found (partner)</div>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h4>Log & photograph the item</h4>
-            <p>Scan or photograph found items and register them on the platform. The whole process takes under 30 seconds.</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h4>Automatic owner matching</h4>
-            <p>The system handles matching with claims. Manage everything from a dashboard — no phone calls needed.</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h4>Accept pickup & hand over</h4>
-            <p>A kustody courier picks up the item directly from you. No more storage overflow headaches.</p>
-          </div>
-        </div>
+    <div class="flow-step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>We contact all centers for you</h4>
+        <p>kustody reaches out to every relevant lost & found center at your airport simultaneously — airline desks, security, terminal offices — by email on your behalf.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Enter your address & receive</h4>
+        <p>Pay for shipping, confirm your address, and we'll deliver it to your door — anywhere in the world.</p>
       </div>
     </div>
   </div>
@@ -629,77 +88,68 @@
         <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.5"/>
         <path d="M13 20l5 5 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <h3>AI-powered matching</h3>
-      <p>Item descriptions and photos are analyzed automatically against the lost & found registry to surface the most accurate matches.</p>
+      <h3>One request, all centers</h3>
+      <p>Airports have multiple lost & found centers — airline desks, security checkpoints, terminal offices. We contact all of them simultaneously, so you don't have to.</p>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
         <rect x="8" y="12" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
         <path d="M8 17h24M16 12V8M24 12V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <h3>Global shipping</h3>
-      <p>Domestic courier to international express (DHL, FedEx) — handled in one place. We manage customs paperwork too.</p>
+      <h3>24/7 online submission</h3>
+      <p>No phone calls, no hold music, no language barriers. Submit your claim anytime via our online form and we handle the rest by email on your behalf.</p>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
         <path d="M20 8v6M20 26v6M8 20h6M26 20h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
       </svg>
-      <h3>Real-time tracking</h3>
-      <p>Step-by-step notifications from claim → match → pickup → delivery → received. Live location tracking included.</p>
+      <h3>Global shipping</h3>
+      <p>Domestic courier to international express (DHL, FedEx) — handled in one place. We manage customs paperwork too.</p>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
         <path d="M12 20l6 6 10-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M20 8C13.4 8 8 13.4 8 20s5.4 12 12 12 12-5.4 12-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <h3>Shipping insurance</h3>
-      <p>High-value items are automatically insured during transit. Fast compensation in the event of loss or damage.</p>
+      <h3>Status notifications</h3>
+      <p>Step-by-step updates from submission → confirmation → pickup → delivery → received. No need to follow up yourself.</p>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
         <path d="M20 10c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M26 10l4 4-4 4M30 14h-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <h3>Multilingual support</h3>
-      <p>Available in English, Korean, Japanese, and Chinese. International travelers can use the platform without language barriers.</p>
+      <h3>Shipping insurance</h3>
+      <p>High-value items are insured during transit. Fast compensation in the event of loss or damage on the way to you.</p>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
         <rect x="10" y="8" width="20" height="26" rx="2" stroke="currentColor" stroke-width="1.5"/>
         <path d="M15 16h10M15 21h10M15 26h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <h3>Airport dashboard API</h3>
-      <p>Integrates with existing airport lost & found systems via API. Low implementation cost and fast onboarding.</p>
+      <h3>Multilingual support</h3>
+      <p>Available in English, Korean, Japanese, and Chinese. International travelers can use the platform without language barriers.</p>
     </div>
   </div>
 </section>
 
-<!-- PARTNER (two targets) -->
-<div class="partner-section" id="partners">
-  <div class="partner-half left">
-    <span class="partner-tag">Travelers</span>
-    <h2>No need to fly back<br>to get it.</h2>
-    <p>Left something overseas? Submit a claim from the app and we'll send it straight to your door. No language barrier, no endless phone calls.</p>
-    <ul class="benefit-list">
-      <li>24/7 online lost item reporting</li>
-      <li>Auto-connected to your flight's airport</li>
-      <li>International customs paperwork handled</li>
-      <li>Sign in with Google or Apple</li>
-    </ul>
+<!-- AIRPORT PARTNERS -->
+<section class="airport-section" id="partners">
+  <div class="section-label">// official partners</div>
+  <h2>Partnered with Korea's busiest airports</h2>
+  <div class="airport-logos">
+    <div class="airport-card">
+      <div class="airport-code">ICN</div>
+      <div class="airport-name">Incheon International Airport</div>
+    </div>
+    <div class="airport-divider"></div>
+    <div class="airport-card">
+      <div class="airport-code">GMP</div>
+      <div class="airport-name">Gimpo International Airport</div>
+    </div>
   </div>
-  <div class="partner-half right">
-    <span class="partner-tag">Airports & Lost & Found Centers</span>
-    <h2>Less storage pressure,<br>less admin work.</h2>
-    <p>Overflowing storage rooms, endless inquiry calls — the kustody partnership automates the busywork and clears the backlog.</p>
-    <ul class="benefit-list">
-      <li>80% reduction in item registration time</li>
-      <li>Automated chatbot handles inquiries</li>
-      <li>Monthly analytics reports included</li>
-      <li>Revenue share on every recovered item</li>
-    </ul>
-  </div>
-</div>
+</section>
 
 <!-- CTA -->
 <section class="cta-section" id="waitlist">
@@ -709,7 +159,7 @@
   <p>Sign up and get notified when we launch — along with exclusive early access perks.</p>
   <div class="email-form">
     <input type="email" class="email-input" placeholder="Enter your email address">
-    <button class="btn-primary" onclick="handleSignup(this)">Notify me →</button>
+    <button class="btn-primary" data-success="Signed up ✓" onclick="handleSignup(this)">Notify me →</button>
   </div>
   <p id="signup-msg" style="margin-top:1rem; font-size:0.85rem; color:#5de0a0; display:none;">✓ You're on the list. We'll be in touch!</p>
 </section>
@@ -725,22 +175,6 @@
   </div>
 </footer>
 
-<script>
-function handleSignup(btn) {
-  const input = document.querySelector('.email-input');
-  if (!input.value || !input.value.includes('@')) {
-    input.style.borderColor = 'rgba(229,75,75,0.5)';
-    input.placeholder = 'Please enter a valid email';
-    return;
-  }
-  btn.textContent = 'Signed up ✓';
-  btn.style.background = '#5de0a0';
-  btn.style.color = '#004f93';
-  btn.disabled = true;
-  input.disabled = true;
-  input.style.opacity = '0.5';
-  document.getElementById('signup-msg').style.display = 'block';
-}
-</script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

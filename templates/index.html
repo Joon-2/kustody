@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{meta_title}}</title>
+<meta name="description" content="{{meta_description}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{basePath}}assets/css/main.css">
+<script src="{{basePath}}assets/js/lang.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">kustody<span style="opacity:0.5;font-size:0.85em">.co</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">{{nav_how}}</a></li>
+    <li><a href="#features">{{nav_features}}</a></li>
+    <li><a href="#partners">{{nav_partners}}</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button onclick="switchLang('en')" class="{{activeLangEn}}">EN</button>
+    <span class="lang-divider"></span>
+    <button onclick="switchLang('ko')" class="{{activeLangKo}}">한국어</button>
+    <span class="lang-divider"></span>
+    <button onclick="switchLang('ja')" class="{{activeLangJa}}">日本語</button>
+  </div>
+  <a href="#waitlist" class="nav-cta">{{nav_cta}}</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+
+  <p class="hero-eyebrow fade-up">{{hero_eyebrow}}</p>
+  <h1 class="fade-up delay-1">{{hero_title_1}}<br><em>{{hero_title_2}}</em></h1>
+  <p class="hero-sub fade-up delay-2">{{hero_sub}}</p>
+  <div class="hero-actions fade-up delay-3">
+    <a href="#waitlist" class="btn-primary">{{hero_cta}}</a>
+    <a href="#how" class="btn-ghost">{{hero_ghost}}</a>
+  </div>
+
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">{{how_label}}</div>
+  <h2>{{how_title_1}}<br>{{how_title_2}}</h2>
+  <p class="section-sub">{{how_sub}}</p>
+
+  <div class="flow-steps" style="margin-top:3rem; max-width:600px;">
+    <div class="flow-step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>{{how_t1_title}}</h4>
+        <p>{{how_t1_desc}}</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>{{how_t2_title}}</h4>
+        <p>{{how_t2_desc}}</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>{{how_t3_title}}</h4>
+        <p>{{how_t3_desc}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="features-section">
+  <div class="section-label">{{features_label}}</div>
+  <h2>{{features_title_1}}<br>{{features_title_2}}</h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M13 20l5 5 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>{{feat_1_title}}</h3>
+      <p>{{feat_1_desc}}</p>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
+        <rect x="8" y="12" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 17h24M16 12V8M24 12V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3>{{feat_2_title}}</h3>
+      <p>{{feat_2_desc}}</p>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M20 8v6M20 26v6M8 20h6M26 20h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <h3>{{feat_3_title}}</h3>
+      <p>{{feat_3_desc}}</p>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M12 20l6 6 10-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 8C13.4 8 8 13.4 8 20s5.4 12 12 12 12-5.4 12-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3>{{feat_4_title}}</h3>
+      <p>{{feat_4_desc}}</p>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M20 10c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M26 10l4 4-4 4M30 14h-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>{{feat_5_title}}</h3>
+      <p>{{feat_5_desc}}</p>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none">
+        <rect x="10" y="8" width="20" height="26" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M15 16h10M15 21h10M15 26h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3>{{feat_6_title}}</h3>
+      <p>{{feat_6_desc}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- AIRPORT PARTNERS -->
+<section class="airport-section" id="partners">
+  <div class="section-label">{{airport_label}}</div>
+  <h2>{{airport_title}}</h2>
+  <div class="airport-logos">
+    <div class="airport-card">
+      <div class="airport-code">ICN</div>
+      <div class="airport-name">{{airport_icn_name}}</div>
+    </div>
+    <div class="airport-divider"></div>
+    <div class="airport-card">
+      <div class="airport-code">GMP</div>
+      <div class="airport-name">{{airport_gmp_name}}</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="waitlist">
+  <div class="cta-glow"></div>
+  <div class="section-label">{{cta_label}}</div>
+  <h2>{{cta_title}}</h2>
+  <p>{{cta_desc}}</p>
+  <div class="email-form">
+    <input type="email" class="email-input" placeholder="{{cta_placeholder}}">
+    <button class="btn-primary" data-success="{{cta_button_done}}" onclick="handleSignup(this)">{{cta_button}}</button>
+  </div>
+  <p id="signup-msg" style="margin-top:1rem; font-size:0.85rem; color:#5de0a0; display:none;">{{cta_success}}</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">kustody<span style="opacity:0.5;font-size:0.85em">.co</span></div>
+  <div class="footer-note">{{footer_note}}</div>
+  <div class="footer-links">
+    <a href="#">{{footer_privacy}}</a>
+    <a href="#">{{footer_terms}}</a>
+    <a href="#">{{footer_partner}}</a>
+  </div>
+</footer>
+
+<script src="{{basePath}}assets/js/main.js"></script>
+</body>
+</html>
